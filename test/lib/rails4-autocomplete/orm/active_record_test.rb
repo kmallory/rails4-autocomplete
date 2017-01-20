@@ -4,7 +4,7 @@ module Rails4Autocomplete
   module Orm
     class ActiveRecordTest < Test::Unit::TestCase
       include Rails4Autocomplete::Orm::ActiveRecord
-
+=begin
       context "#get_autocomplete_order" do
         context 'order is specified' do
           should 'returns that order option' do
@@ -26,7 +26,7 @@ module Rails4Autocomplete
           end
         end
       end
-=begin
+
       context '#get_autocomplete_items' do
         should 'retrieve the items from ActiveRecord' do
           class Dog ; end
@@ -58,7 +58,7 @@ module Rails4Autocomplete
           assert_equal 1, get_autocomplete_items(options)
         end
       end
-=end
+
       context '#get_autocomplete_select_clause' do
         setup do
           @model = Object.new
@@ -112,6 +112,13 @@ module Rails4Autocomplete
             assert_equal ["LOWER(table_name.method) LIKE ?", "%query%"], get_autocomplete_where_clause(@model, @term, @method, @options)
           end
         end
+
+        context 'special char search' do
+          should 'quote special characters in search term' do
+            mock(self).postgres?(@model) { false }
+            assert_equal ["LOWER(table_name.method) LIKE ?", "q\\_ue\\%r\\\\y%"], get_autocomplete_where_clause(@model, 'q_ue%r\y', @method, @options)
+          end
+        end
       end
 
       context '#postgres?' do
@@ -140,6 +147,7 @@ module Rails4Autocomplete
           end
         end
       end
+=end      
     end
   end
 end

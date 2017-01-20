@@ -1,5 +1,10 @@
+## Project Moved
+There has been some confusion around the naming as to where to find the Rails3 Rails4 and so on version of this gem due to the original naming. With the latest release I have taken the opportunity to address this by moving the official repo.
+
+The official repo is now located at [rails-jquery-autocomplete](https://github.com/bigtunacan/rails-jquery-autocomplete)
+
 ## Status
-[![Build Status](https://secure.travis-ci.org/peterwillcn/rails4-autocomplete.png)](http://travis-ci.org/peterwillcn/rails4-autocomplete.png)
+[![Build Status](https://secure.travis-ci.org/peterwillcn/rails4-autocomplete.png)](https://travis-ci.org/peterwillcn/rails4-autocomplete) [![Gem Version](https://badge.fury.io/rb/rails4-autocomplete.png)](http://badge.fury.io/rb/rails4-autocomplete)
 
 Unfortunately, I don't have much time to work on this gem, I'm looking for
 someone to help with its maintenance. Send me an email if you are interested in
@@ -15,16 +20,6 @@ Supports both ActiveRecord, [mongoid](http://github.com/mongoid/mongoid), and [M
 Works with [Formtastic](http://github.com/justinfrench/formtastic)
 and [SimpleForm](https://github.com/plataformatec/simple_form)
 
-## ActiveRecord
-
-You can find a [detailed example](http://github.com/crowdint/rails3-jquery-autocomplete-app)
-on how to use this gem with ActiveRecord [here](http://github.com/crowdint/rails3-jquery-autocomplete-app).
-
-## MongoID
-
-You can find a [detailed example](http://github.com/crowdint/rails3-jquery-autocomplete-app/tree/mongoid)
-on how to use this gem with MongoID [here](http://github.com/crowdint/rails3-jquery-autocomplete-app/tree/mongoid). (Same thing, different branch)
-
 ## Before you start
 
 Make sure your project is using jQuery-UI and the autocomplete widget
@@ -37,6 +32,16 @@ You can find more info about that here:
 * http://github.com/rails/jquery-ujs
 
 I'd encourage you to understand how to use those 3 amazing tools before attempting to use this gem.
+
+## Demo Application rails4-autocomplete-demo
+
+A live demo can be seen
+
+[here](https://rocky-thicket-9286.herokuapp.com/)
+
+[source](https://github.com/yifeiwu/rails4-autocomplete-demo).
+
+As a new developer, I had some issues getting this to work by following the documentation. However after trying some things and reading [Yoni Weisbrod](http://www.yoniweisbrod.com/autocomplete-magic-with-rails/)'s blog post, I was able to make the autocomplete work and implement a few useful features.
 
 ## Installing
 
@@ -109,6 +114,12 @@ This will create an action _autocomplete_brand_name_ on your controller, don't f
     resources :products do
       get :autocomplete_brand_name, :on => :collection
     end
+### View
+
+In terms of view, you just add a _data :{ autocomplete_brand_name_brands_path}_ to the input attributes
+
+    = text_field_tag :search, params[:search], data: { autocomplete: autocomplete_brand_name_brands_path }
+
 
 ### Options
 
@@ -251,7 +262,7 @@ A javascript event named *railsAutocomplete.select* is fired on the input field 
 
 You can pass a custom message for when there is not results found. For this the element must have a data attribute named ```data-autocomplete-label```. For example:
 
-    autocomplete_field_tag 'address', '', address_autocomplete_path, :size => 75, 
+    autocomplete_field_tag 'address', '', address_autocomplete_path, :size => 75,
 	:"data-autocomplete-label" => "Sorry, nothing found."
 
 ## Formtastic
@@ -299,7 +310,7 @@ An example on how to use it:
       And I choose "Alpha" in the autocomplete list
       Then the "Brand name" field should contain "Alpha"
 
-I have only tested this using Capybara, no idea if it works with something else, to see it in action, check the [example app](http://github.com/crowdint/rails3-jquery-autocomplete-app).
+I have only tested this using Capybara, no idea if it works with something else, to see it in action, check the [example app](https://github.com/yifeiwu/rails4-autocomplete-demo).
 
 # Steak
 
@@ -378,5 +389,3 @@ the integration tests. Feel free to remove them from the integration
 suite and move them into the main suite. Your tests will run much
 faster, and there will be less likelihood of your feature breaking in
 the future. Thanks!
-
-
