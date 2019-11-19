@@ -161,7 +161,7 @@ This options receives a method name as the parameter, and that method will be ca
 
     class Brand < ActiveRecord::Base
       def funky_method
-        "#{self.name}.camelize"
+        "#{self.name}".camelize
       end
     end
 
